@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10151f">
+  <title>QR Balance Alert</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/"><span class="brand-mark">Q</span><span>QR <b>Balance</b><small>ALERT</small></span></a>
+      <div class="side-label">WORKSPACE</div>
+      <a class="nav active" href="#overview"><span>▦</span> Overview</a>
+      <a class="nav" href="#accounts"><span>▤</span> Bank accounts</a>
+      <a class="nav" href="#activity"><span>◷</span> Activity alerts</a>
+      <div class="sidebar-bottom"><div class="secure-icon">✓</div><b>Your data, your control</b><p>This preview stores demo data in memory. No bank credentials are requested.</p></div>
+    </aside>
+
+    <main class="main" id="overview">
+      <header class="topbar"><div><div class="eyebrow">PERSONAL FINANCE • OVERVIEW</div><h1>Good day<span class="dot">.</span></h1></div><div class="top-actions"><span class="demo-pill"><i></i> DEMO MODE</span><div class="avatar">AG</div></div></header>
+      <section class="notice"><span class="notice-icon">i</span><div><b>Preview environment</b><p>Balances and payment alerts below are sample data. Real bank connectivity is not enabled.</p></div></section>
+
+      <section class="summary-grid">
+        <article class="balance-card"><div class="card-top"><span class="muted">TOTAL DEMO BALANCE</span><span class="live-dot">● SAMPLE</span></div><div class="total" id="totalBalance">₹38,361.15</div><div class="balance-foot"><span>Across 3 sample accounts</span><span class="trend">Demo overview ↗</span></div><div class="orb orb-one"></div><div class="orb orb-two"></div></article>
+        <article class="mini-card"><div class="mini-icon purple">⌁</div><span class="muted">SCAN ACTIVITY</span><strong id="scanCount">1</strong><small>QR scans recorded in this demo</small></article>
+        <article class="mini-card"><div class="mini-icon mint">↗</div><span class="muted">PAYMENT ALERTS</span><strong id="paymentCount">2</strong><small>Simulated payment events</small></article>
+      </section>
+
+      <section class="section" id="accounts"><div class="section-heading"><div><div class="eyebrow">CONNECTED SOURCES</div><h2>Bank accounts</h2></div><span class="subtle">3 demo accounts</span></div>
+        <div class="accounts-grid" id="accountsGrid"></div>
+      </section>
+
+      <section class="lower-grid">
+        <article class="panel scanner-panel"><div class="section-heading"><div><div class="eyebrow">QUICK ACTION</div><h2>QR scanner</h2></div><span class="scanner-symbol">▦</span></div>
+          <p class="panel-copy">Scan a QR code to record a local demo scan event. This does not initiate a payment or reveal your bank balance.</p>
+          <div class="scan-area"><div class="scan-frame"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="scan-glyph">▦</div></div><div class="scan-text" id="scanStatus">Camera scanning is available on supported browsers.</div></div>
+          <div class="scan-actions"><button class="btn primary" id="startScan">Start camera</button><label class="btn secondary upload-btn">Upload QR image<input type="file" id="qrFile" accept="image/*" hidden></label></div>
+          <video id="camera" playsinline muted></video>
+        </article>
+        <article class="panel activity-panel" id="activity"><div class="section-heading"><div><div class="eyebrow">LATEST UPDATES</div><h2>Activity alerts</h2></div><button class="text-button" id="refresh">Refresh ↻</button></div><div class="activity-list" id="activityList"></div></article>
+      </section>
+      <section class="simulator"><div><div class="eyebrow">DEVELOPER PREVIEW</div><h3>Test a balance alert</h3><p>Generate a sample transaction to see how activity alerts work.</p></div><div class="sim-controls"><input type="number" id="amount" min="1" max="1000000" value="500" aria-label="Demo amount"><button class="btn secondary" id="sendDemo">Simulate sent</button><button class="btn primary" id="receiveDemo">Simulate received</button></div></section>
+      <footer>QR BALANCE ALERT <span>•</span> Prototype v0.1 <span class="footer-right">Never share your UPI PIN, OTP, or banking password.</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
